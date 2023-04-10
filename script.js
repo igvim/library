@@ -1,12 +1,5 @@
 const newBookForm = document.querySelector('form');
 
-const Book = (title, author, pages, read) => {
-  const info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages`
-  }
-  return { title, author, pages, read, info }
-}
-
 const libraryState = (() => {
   const library = [];
   const container = document.querySelector('.book-container');
@@ -21,6 +14,12 @@ const libraryState = (() => {
     const newBookAuthor = document.querySelector('#author');
     const newBookPages = document.querySelector('#pages');
     //const isBookRead = 
+    const Book = (title, author, pages, read) => {
+      const info = function() {
+        return `${this.title} by ${this.author}, ${this.pages} pages`
+      }
+      return { title, author, pages, read, info }
+    }
     const newBook = Book(
       newBookTitle.value, 
       newBookAuthor.value, 
