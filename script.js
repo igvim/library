@@ -1,5 +1,12 @@
 const newBookForm = document.querySelector('form');
 
+const Book = (title, author, pages, read) => {
+  const info = function() {
+    return `${this.title} by ${this.author}, ${this.pages} pages`
+  }
+  return { title, author, pages, read, info }
+}
+
 const libraryState = {
   library: [],
   container: document.querySelector('.book-container'),
@@ -14,7 +21,7 @@ const libraryState = {
     const newBookAuthor = document.querySelector('#author');
     const newBookPages = document.querySelector('#pages');
     //const isBookRead = 
-    const newBook = new Book(
+    const newBook = Book(
       newBookTitle.value, 
       newBookAuthor.value, 
       newBookPages.value, 
@@ -28,17 +35,6 @@ const libraryState = {
   display: function() {
     this.library.forEach(el => this.createCard(el));
   },
-}
-
-function Book(title, author, pages, read) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = read
-}
-
-Book.prototype.info = function() {
-  return `${this.title} by ${this.author}, ${this.pages} pages`
 }
 
 newBookForm.addEventListener('submit', (e) => {
