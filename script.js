@@ -4,9 +4,15 @@ const libraryState = (() => {
   const library = [];
   const container = document.querySelector('.book-container');
 
+  const bookProto = {
+    info() {
+      return `${this.title} by ${this.author}, ${this.pages} pages`
+    }
+  }
+
   const Book = (title, author, pages, read) => {
-    const info = () => `${title} by ${author}, ${pages} pages`
-    return { title, author, pages, read, info }
+    const book = Object.create(bookProto);
+    return Object.assign(book, { title, author, pages, read });
   }
 
   const addBook = () => {
