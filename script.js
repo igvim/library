@@ -1,17 +1,33 @@
-const library = [];
 const newBookForm = document.querySelector('form');
 
-const bookState = {
-  bookContainer: document.querySelector('.book-container'),
-  create: function createBookCard(storedBook) {
+const libraryState = {
+  library: [],
+  container: document.querySelector('.book-container'),
+  createCard: function(storedBook) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('card');
     bookCard.textContent = storedBook.info();
-    this.bookContainer.appendChild(bookCard);
+    this.container.appendChild(bookCard);
   },
-  clear: function clearBooks() {
-    this.bookContainer.innerHTML = '';
-  }
+  addBook: function() {
+    const newBookTitle = document.querySelector('#title');
+    const newBookAuthor = document.querySelector('#author');
+    const newBookPages = document.querySelector('#pages');
+    //const isBookRead = 
+    const newBook = new Book(
+      newBookTitle.value, 
+      newBookAuthor.value, 
+      newBookPages.value, 
+      true
+      );
+    this.library.push(newBook);
+  },
+  clear: function() {
+    this.container.innerHTML = '';
+  },
+  display: function() {
+    this.library.forEach(el => this.createCard(el));
+  },
 }
 
 function Book(title, author, pages, read) {
@@ -25,28 +41,10 @@ Book.prototype.info = function() {
   return `${this.title} by ${this.author}, ${this.pages} pages`
 }
 
-function addBookToLibrary() {
-  const newBookTitle = document.querySelector('#title');
-  const newBookAuthor = document.querySelector('#author');
-  const newBookPages = document.querySelector('#pages');
-  //const isBookRead = 
-  const newBook = new Book(
-    newBookTitle.value, 
-    newBookAuthor.value, 
-    newBookPages.value, 
-    true
-    );
-  library.push(newBook);
-}
-
-function displayBooks() {
-  library.forEach(el => bookState.create(el));
-}
-
 newBookForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  addBookToLibrary();
+  libraryState.addBook();
   newBookForm.reset();
-  bookState.clear();
-  displayBooks();
+  libraryState.clear();
+  libraryState.display();
 })
