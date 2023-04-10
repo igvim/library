@@ -3,9 +3,6 @@ const newBookForm = document.querySelector('form');
 const libraryState = (() => {
   const library = [];
   const container = document.querySelector('.book-container');
-  const newBookTitle = document.querySelector('#title');
-  const newBookAuthor = document.querySelector('#author');
-  const newBookPages = document.querySelector('#pages');
   // const isBookRead = 
 
   const Book = (title, author, pages, read) => {
@@ -14,6 +11,9 @@ const libraryState = (() => {
   }
 
   const addBook = () => {
+    const newBookTitle = document.querySelector('#title');
+    const newBookAuthor = document.querySelector('#author');
+    const newBookPages = document.querySelector('#pages');
     const newBook = Book(
       newBookTitle.value, 
       newBookAuthor.value, 
@@ -37,7 +37,7 @@ const libraryState = (() => {
   const display = () => {
     library.forEach(el => createCard(el));
   };
-  
+
   return { addBook, clear, display }
 })();
 
