@@ -1,6 +1,18 @@
 const library = [];
 const newBookForm = document.querySelector('form');
-const bookContainer = document.querySelector('.book-container');
+
+const bookState = {
+  bookContainer: document.querySelector('.book-container'),
+  create: function createBookCard(storedBook) {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('card');
+    bookCard.textContent = storedBook.info();
+    this.bookContainer.appendChild(bookCard);
+  },
+  clear: function clearBooks() {
+    this.bookContainer.innerHTML = '';
+  }
+}
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -27,25 +39,14 @@ function addBookToLibrary() {
   library.push(newBook);
 }
 
-function createBookCard(storedBook) {
-  const bookCard = document.createElement('div');
-  bookCard.classList.add('card');
-  bookCard.textContent = storedBook.info();
-  bookContainer.appendChild(bookCard);
-}
-
-function clearBooks() {
-  bookContainer.innerHTML = '';
-}
-
 function displayBooks() {
-  library.forEach(el => createBookCard(el));
+  library.forEach(el => bookState.create(el));
 }
 
 newBookForm.addEventListener('submit', (e) => {
   e.preventDefault();
   addBookToLibrary();
   newBookForm.reset();
-  clearBooks();
+  bookState.clear();
   displayBooks();
 })
