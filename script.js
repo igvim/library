@@ -7,6 +7,41 @@ const Book = (title, author, pages, read) => {
   return { title, author, pages, read, info }
 }
 
+const libraryState = (() => {
+  const library = [];
+  const container = document.querySelector('.book-container');
+  const createCard = function(storedBook) {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('card');
+    bookCard.textContent = storedBook.info();
+    container.appendChild(bookCard);
+  };
+  const addBook = function() {
+    const newBookTitle = document.querySelector('#title');
+    const newBookAuthor = document.querySelector('#author');
+    const newBookPages = document.querySelector('#pages');
+    //const isBookRead = 
+    const newBook = Book(
+      newBookTitle.value, 
+      newBookAuthor.value, 
+      newBookPages.value, 
+      true
+      );
+    library.push(newBook);
+  };
+  const clear = function() {
+    container.innerHTML = '';
+  };
+  const display = function() {
+    library.forEach(el => createCard(el));
+  };
+  return { addBook, clear, display }
+})();
+
+/*
+****
+libraryState as object literal
+****
 const libraryState = {
   library: [],
   container: document.querySelector('.book-container'),
@@ -36,6 +71,7 @@ const libraryState = {
     this.library.forEach(el => this.createCard(el));
   },
 }
+*/
 
 newBookForm.addEventListener('submit', (e) => {
   e.preventDefault();
