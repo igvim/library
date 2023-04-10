@@ -1,8 +1,4 @@
 const library = [];
-const newBookTitle = document.querySelector('#title');
-const newBookAuthor = document.querySelector('#author');
-const newBookPages = document.querySelector('#pages');
-//const isBookRead = 
 const newBookForm = document.querySelector('form');
 const bookContainer = document.querySelector('.book-container');
 
@@ -18,6 +14,10 @@ Book.prototype.info = function() {
 }
 
 function addBookToLibrary() {
+  const newBookTitle = document.querySelector('#title');
+  const newBookAuthor = document.querySelector('#author');
+  const newBookPages = document.querySelector('#pages');
+  //const isBookRead = 
   const newBook = new Book(
     newBookTitle.value, 
     newBookAuthor.value, 
