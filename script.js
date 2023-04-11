@@ -19,18 +19,24 @@ const libraryState = (() => {
     library.push(newBook);
   };
 
-  const createCard = book => {
+  const createCard = (book, bookId) => {
     const bookCard = document.createElement('div');
     const title = document.createElement('p');
     const author = document.createElement('p');
     const pages = document.createElement('p');
+    const rmButton = document.createElement('button');
+
+    bookCard.dataset.bookId = bookId;
     bookCard.classList.add('card');
     title.textContent = book.title;
     author.textContent = `by ${book.author}`;
     pages.textContent = `${book.pages} pages`;
+    rmButton.textContent = 'Remove Book';
+
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
+    bookCard.appendChild(rmButton);
     container.appendChild(bookCard);
   };
 
@@ -39,7 +45,7 @@ const libraryState = (() => {
   };
 
   const display = () => {
-    library.forEach(el => createCard(el));
+    library.forEach((el, i) => createCard(el, i));
   };
 
   return { addBook, clear, display }
