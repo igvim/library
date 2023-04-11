@@ -4,16 +4,7 @@ const libraryState = (() => {
   const library = [];
   const container = document.querySelector('.book-container');
 
-  const bookProto = {
-    info() {
-      return `${this.title} by ${this.author}, ${this.pages} pages`
-    }
-  }
-
-  const Book = (title, author, pages, read) => {
-    const book = Object.create(bookProto);
-    return Object.assign(book, { title, author, pages, read });
-  }
+  const Book = (title, author, pages, read) =>  ({ title, author, pages, read });
 
   const addBook = () => {
     const newBookTitle = document.querySelector('#title');
@@ -29,10 +20,18 @@ const libraryState = (() => {
     library.push(newBook);
   };
 
-  const createCard = storedBook => {
+  const createCard = book => {
     const bookCard = document.createElement('div');
+    const title = document.createElement('p');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
     bookCard.classList.add('card');
-    bookCard.textContent = storedBook.info();
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+    bookCard.appendChild(title);
+    bookCard.appendChild(author);
+    bookCard.appendChild(pages);
     container.appendChild(bookCard);
   };
 
