@@ -15,7 +15,11 @@ button {
   align-self: center;
 }
 
+.book-container {
+  display: grid;
+}
+
 .card {
   border: solid black;
-  padding: 50px;
+  padding: 20px;
 }
