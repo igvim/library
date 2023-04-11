@@ -40,6 +40,15 @@ const libraryState = (() => {
     container.appendChild(bookCard);
   };
 
+  const deleteBook = bookId => {
+    library.splice(bookId, 1);
+  }
+
+  const deleteCard = bookId => {
+    const targetCard = document.querySelector(`div[data-book-id='${bookId}']`);
+    container.removeChild(targetCard);
+  }
+
   const clear = () => {
     container.innerHTML = '';
   };
@@ -48,7 +57,7 @@ const libraryState = (() => {
     library.forEach((el, i) => createCard(el, i));
   };
 
-  return { addBook, clear, display }
+  return { addBook, clear, display, deleteBook, deleteCard }
 })();
 
 newBookForm.addEventListener('submit', (e) => {
