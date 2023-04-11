@@ -27,8 +27,8 @@ const libraryState = (() => {
     const pages = document.createElement('p');
     bookCard.classList.add('card');
     title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
+    author.textContent = `by ${book.author}`;
+    pages.textContent = `${book.pages} pages`;
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
