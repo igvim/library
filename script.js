@@ -4,7 +4,7 @@ const libraryState = (() => {
   const library = [];
   const container = document.querySelector('.book-container');
 
-  const Book = (title, author, pages, read) =>  ({ title, author, pages, read });
+  const Book = (title, author, pages ) =>  ({ title, author, pages });
 
   const addBook = () => {
     const newBookTitle = document.querySelector('#title');
@@ -14,7 +14,6 @@ const libraryState = (() => {
       newBookTitle.value, 
       newBookAuthor.value, 
       newBookPages.value, 
-      true
       );
     library.push(newBook);
   };
